@@ -1,6 +1,6 @@
 const path = require('path');
-const CopyWebpackPlugin = require('copy-webpack-plugin')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: {
@@ -10,7 +10,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     publicPath: '/',
-    filename: 'js/bundle.[name].js',
+    filename: 'js/[name].bundle.js',
     chunkFilename: 'js/[name].bundle.js'
   },
 
@@ -42,7 +42,7 @@ module.exports = {
 
     new CopyWebpackPlugin([
       {
-        from: path.resolve(__dirname, 'src/images/favicon'),
+        from: path.resolve(__dirname, 'src/images/favicon.ico'),
         to: '/'
       }
     ])

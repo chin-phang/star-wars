@@ -9,12 +9,14 @@
   },
   "scripts": {
     "tslint-check": "tslint-config-prettier-check ./tslint.json",
-    "ts:format": "prettier \"./src/**/*.{ts,tsx}\" --config ./prettier.config.js --write",
-    "scss:format": "prettier \"./src/**/*.scss\" --config ./prettier-scss.config.js --write",
-    "stylelint:fix": "stylelint \"./src/**/*.scss\" --config ./stylelint.config.js --fix",
+    "ts-format": "prettier \"./src/**/*.{ts,tsx}\" --config ./prettier.config.js --write",
+    "scss-format": "prettier \"./src/**/*.scss\" --config ./prettier-scss.config.js --write",
+    "stylelint-fix": "stylelint \"./src/**/*.scss\" --config ./stylelint.config.js --fix",
     "test": "jest",
-    "dev": "webpack-dev-server --config=webpack.config.dev.js",
-    "prod": "webpack --mode=production --config=webpack.config.prod.js"
+    "start": "webpack-dev-server --config=webpack.config.dev.js",
+    "build-clean": "rimraf dist/*",
+    "prebuild": "npm run build-clean",
+    "build": "webpack --mode=production --config=webpack.config.prod.js"
   },
   "husky": {
     "hooks": {

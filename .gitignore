@@ -1,16 +1,8 @@
-# OS
 .DS_Store
-
-# Dependency directories
-node_modules
-
-# IDE
 .idea
-
-# dotenv environment variables file
 .env
-
-# Logs
+node_modules/
+dist/
 logs
 *.log
 npm-debug.log*

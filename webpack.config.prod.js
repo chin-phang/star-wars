@@ -1,7 +1,7 @@
-const webpack = require('webpack')
-const path = require('path')
-const merge = require('webpack-merge')
-const baseWebpackConfig = require('./webpack.config.base')
+const webpack = require('webpack');
+const path = require('path');
+const merge = require('webpack-merge');
+const baseWebpackConfig = require('./webpack.config.base');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 const prodWebpackConfig = merge(baseWebpackConfig, {
@@ -9,7 +9,7 @@ const prodWebpackConfig = merge(baseWebpackConfig, {
     path: path.resolve(__dirname, 'dist'),
     publicPath: '/',
     filename: 'js/[name].[contenthash].js',
-    chunkFilename: 'js/[id].[contenthash].js'
+    chunkFilename: 'js/[name].[contenthash].js'
   },
 
   module: {
@@ -47,7 +47,7 @@ const prodWebpackConfig = merge(baseWebpackConfig, {
 
     new MiniCssExtractPlugin({
       filename: "css/[name].[contenthash].css",
-      chunkFilename: "css/[id].[contenthash].css"
+      chunkFilename: "css/[name].[contenthash].css"
     })
   ],
 
@@ -58,7 +58,7 @@ const prodWebpackConfig = merge(baseWebpackConfig, {
         vendor: {
           test: /[\\/]node_modules[\\/]/,
           name: 'vendors',
-          chucks: 'all'
+          chunks: 'all'
         }
       }
     }
