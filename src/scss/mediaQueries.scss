@@ -1,0 +1,67 @@
+@import "~bootstrap/scss/mixins/breakpoints";
+
+@mixin mobile {
+  @include media-breakpoint-between(xs, sm) {
+    @content;
+  }
+}
+
+@mixin mobile-and-smaller {
+  @include media-breakpoint-down(xs) {
+    @content;
+  }
+}
+
+@mixin mobile-and-bigger {
+  @include media-breakpoint-up(sm) {
+    @content;
+  }
+}
+
+@mixin tablet-and-smaller {
+  @include media-breakpoint-down(sm) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @include media-breakpoint-between(sm, md) {
+    @content;
+  }
+}
+
+@mixin tablet-and-bigger {
+  @include media-breakpoint-up(md) {
+    @content;
+  }
+}
+
+@mixin laptop-and-smaller {
+  @include media-breakpoint-down(md) {
+    @content;
+  }
+}
+
+@mixin laptop {
+  @include media-breakpoint-between(md, lg) {
+    @content;
+  }
+}
+
+@mixin laptop-and-bigger {
+  @include media-breakpoint-up(lg) {
+    @content;
+  }
+}
+
+@mixin desktop-and-smaller {
+  @include media-breakpoint-down(lg) {
+    @content;
+  }
+}
+
+@mixin desktop-and-bigger {
+  @include media-breakpoint-up(xl) {
+    @content;
+  }
+}
