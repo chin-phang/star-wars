@@ -9,6 +9,9 @@
   },
   "scripts": {
     "tslint-check": "tslint-config-prettier-check ./tslint.json",
+    "ts:format": "prettier \"./src/**/*.{ts,tsx}\" --config ./prettier.config.js --write",
+    "scss:format": "prettier \"./src/**/*.scss\" --config ./prettier-scss.config.js --write",
+    "stylelint:fix": "stylelint \"./src/**/*.scss\" --config ./stylelint.config.js --fix",
     "test": "jest",
     "dev": "webpack-dev-server --config=webpack.config.dev.js",
     "prod": "webpack --mode=production --config=webpack.config.prod.js"
@@ -23,9 +26,8 @@
       "node_modules/.bin/prettier --config ./prettier.config.js --write",
       "git add"
     ],
-    "src/**/*.{css,scss}": [
+    "src/**/*.scss": [
       "node_modules/.bin/prettier --config ./prettier-scss.config.js --write",
-      "node_modules/.bin/stylelint --syntax=scss",
       "git add"
     ]
   },
