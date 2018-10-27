@@ -1,10 +1,12 @@
 const path = require('path');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const dotenv = require('dotenv');
+
+dotenv.config();
 
 module.exports = {
   entry: {
-    app: './src/index.tsx'
+    app: './src/index.jsx'
   },
 
   output: {
@@ -15,22 +17,21 @@ module.exports = {
   },
 
   resolve: {
-    extensions: [".ts", ".tsx", ".js", ".json"]
+    extensions: ['.js', '.jsx', '.json']
   },
 
   module: {
     rules: [
-
       {
-        test: /\.tsx?$/,
+        test: /\.jsx?$/,
         include: path.resolve(__dirname, 'src'),
-        loader: "awesome-typescript-loader"
+        loader: 'babel-loader'
       },
 
       {
         test: /\.(png|jpe?g|gif|svg|mp4|webm|ogg|mp3|wav|flac|aac|woff2?|eot|ttf|otf)(\?.*)?$/,
-        loader: 'file-loader',
-      },
+        loader: 'file-loader'
+      }
     ]
   },
 
@@ -38,14 +39,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: 'index.ejs',
       title: 'SW API'
-    }),
-
-    new CopyWebpackPlugin([
-      {
-        from: path.resolve(__dirname, 'src/images/favicon.ico'),
-        to: '/'
-      }
-    ])
+    })
   ],
 
   node: {

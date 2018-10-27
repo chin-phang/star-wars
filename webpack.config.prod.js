@@ -2,7 +2,7 @@ const webpack = require('webpack');
 const path = require('path');
 const merge = require('webpack-merge');
 const baseWebpackConfig = require('./webpack.config.base');
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const prodWebpackConfig = merge(baseWebpackConfig, {
   output: {
@@ -16,9 +16,7 @@ const prodWebpackConfig = merge(baseWebpackConfig, {
     rules: [
       {
         test: /\.(scss|css)$/,
-        include: [
-          path.resolve(__dirname, 'src'),
-        ],
+        include: [path.resolve(__dirname, 'src')],
         use: [
           {
             loader: MiniCssExtractPlugin.loader
@@ -27,8 +25,8 @@ const prodWebpackConfig = merge(baseWebpackConfig, {
             loader: 'css-loader',
             options: {
               modules: true,
-              localIdentName: '[local]--[hash:base64:5]',
-            },
+              localIdentName: '[local]--[hash:base64:5]'
+            }
           },
           'resolve-url-loader',
           'sass-loader',
@@ -40,14 +38,14 @@ const prodWebpackConfig = merge(baseWebpackConfig, {
 
   mode: 'production',
 
-  devtool: "source-map",
+  devtool: 'source-map',
 
   plugins: [
     new webpack.HashedModuleIdsPlugin(),
 
     new MiniCssExtractPlugin({
-      filename: "css/[name].[contenthash].css",
-      chunkFilename: "css/[name].[contenthash].css"
+      filename: 'css/[name].[contenthash].css',
+      chunkFilename: 'css/[name].[contenthash].css'
     })
   ],
 

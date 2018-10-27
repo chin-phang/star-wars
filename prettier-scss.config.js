@@ -1,4 +1,4 @@
 module.exports = {
-  parser: "scss",
+  parser: 'scss',
   singleQuote: false
-}
+};

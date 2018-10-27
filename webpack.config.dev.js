@@ -8,17 +8,15 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     rules: [
       {
         test: /\.(scss|css)$/,
-        include: [
-          path.resolve(__dirname, 'src'),
-        ],
+        include: [path.resolve(__dirname, 'src')],
         use: [
-         'style-loader',
+          'style-loader',
           {
             loader: 'css-loader',
             options: {
               modules: true,
-              localIdentName: '[local]--[hash:base64:5]',
-            },
+              localIdentName: '[local]--[hash:base64:5]'
+            }
           },
           'resolve-url-loader',
           'sass-loader'
@@ -29,19 +27,17 @@ const devWebpackConfig = merge(baseWebpackConfig, {
 
   mode: 'development',
 
-  devtool: "source-map",
+  devtool: 'source-map',
 
   devServer: {
     historyApiFallback: true,
     hot: true,
     contentBase: path.resolve(__dirname, 'dist'),
+    publicPath: '/',
     compress: true
   },
 
-  plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-
-  ]
+  plugins: [new webpack.HotModuleReplacementPlugin()]
 });
 
 module.exports = devWebpackConfig;
