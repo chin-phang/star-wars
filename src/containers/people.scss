@@ -11,6 +11,10 @@
 
 .page {
   margin-top: 20px;
+
+  &.hidden {
+    visibility: hidden;
+  }
 }
 
 .people {
