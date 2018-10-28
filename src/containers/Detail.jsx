@@ -96,7 +96,13 @@ export class DetailContainer extends React.Component {
 
   render() {
     let { results } = this.props;
-    const { selected, activeIndex } = this.state;
+    const { activeIndex } = this.state;
+    const indicators = map(results, item => {
+      let url = item.url.substr(item.url.indexOf('people/'));
+      let id = url.split('/')[1];
+
+      return Object.assign(item, { key: id });
+    });
 
     const slides = map(results, item => {
       let url = item.url.substr(item.url.indexOf('people/'));
@@ -127,7 +133,7 @@ export class DetailContainer extends React.Component {
             previous={this.previous}
           >
             <CarouselIndicators
-              items={results}
+              items={indicators}
               activeIndex={activeIndex}
               onClickHandler={this.goToIndex}
             />

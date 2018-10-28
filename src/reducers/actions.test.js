@@ -2,6 +2,7 @@ import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import moxios from 'moxios';
 
+import instance from '../utils/request';
 import * as Actions from './actions';
 import * as Types from './constants';
 import { peopleMockData } from '../mocks';
@@ -11,17 +12,16 @@ const mockStore = configureMockStore(middlewares);
 
 describe('fetchAllPeople actions', () => {
   beforeEach(function() {
-    moxios.install();
+    moxios.install(instance);
   });
 
   afterEach(function() {
-    moxios.uninstall();
+    moxios.uninstall(instance);
   });
 
   it('creates LIST_SUCCESS after successfully fetching people', () => {
     moxios.wait(() => {
       const request = moxios.requests.mostRecent();
-
       request.respondWith({
         status: 200,
         response: peopleMockData

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { throwError } from 'rxjs';
 
-const request = axios.create({
+const instance = axios.create({
   baseURL: 'https://swapi.co/api',
   headers: {
     Accept: 'application/json',
@@ -10,7 +10,7 @@ const request = axios.create({
 });
 
 export const get = (url, ...config) => {
-  return request
+  return instance
     .get(url, ...config)
     .then(response => response)
     .catch(error => {
@@ -23,3 +23,5 @@ export const get = (url, ...config) => {
       }
     });
 };
+
+export default instance;

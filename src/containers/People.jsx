@@ -89,7 +89,7 @@ export class PeopleContainer extends React.Component {
               [`${style.hidden}`]: !isVisible
             })}
           >
-            Page {qs.page} of {Math.ceil(this.props.data.count / 10)}
+            Page {qs.page || 1} of {Math.ceil(this.props.data.count / 10)}
           </h4>
         </div>
 
