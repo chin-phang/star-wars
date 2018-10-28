@@ -35,7 +35,7 @@ export class PeopleContainer extends React.Component {
   }
 
   componentDidMount() {
-    const url = window.location.href.substr(
+    let url = window.location.href.substr(
       window.location.href.indexOf('/people')
     );
 
@@ -44,7 +44,7 @@ export class PeopleContainer extends React.Component {
 
   componentWillUpdate(nextProps) {
     if (nextProps.location.search !== this.props.location.search) {
-      const url = window.location.href.substr(
+      let url = window.location.href.substr(
         window.location.href.indexOf('/people')
       );
 
@@ -59,8 +59,8 @@ export class PeopleContainer extends React.Component {
   }
 
   renderDetail(obj) {
-    const url = obj.url.substr(obj.url.indexOf('people/'));
-    const id = url.split('/')[1];
+    let url = obj.url.substr(obj.url.indexOf('people/'));
+    let id = url.split('/')[1];
 
     return (
       <Link
@@ -77,8 +77,8 @@ export class PeopleContainer extends React.Component {
   }
 
   render() {
-    const qs = queryString.parse(this.props.location.search);
-    const isVisible = !this.props.loading && this.props.data.count;
+    let qs = queryString.parse(this.props.location.search);
+    let isVisible = !this.props.loading && this.props.data.count;
 
     return (
       <div className={style.peopleContainer}>

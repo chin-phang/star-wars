@@ -26,7 +26,7 @@ export class RoutesContainer extends React.Component {
       nextProps.history.action !== 'POP' &&
       (!location.state || !location.state.popup)
     ) {
-      this.previousLocation = this.props.location;
+      this.previousLocation = location;
     }
   }
 

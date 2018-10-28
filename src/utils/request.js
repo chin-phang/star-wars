@@ -9,9 +9,9 @@ const request = axios.create({
   }
 });
 
-export const get = url => {
+export const get = (url, ...config) => {
   return request
-    .get(url)
+    .get(url, ...config)
     .then(response => response)
     .catch(error => {
       if (error.response) {
