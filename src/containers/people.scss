@@ -1,11 +1,17 @@
 @import "../scss/utils";
 
+.heading {
+  color: yellow;
+  text-align: center;
+  margin-top: 100px;
+}
+
 .people {
   background-color: black;
   color: yellow;
   display: flex;
   align-items: center;
-  padding: 80px 40px;
+  padding: 100px 40px 40px;
 }
 
 .itemContainer {
@@ -21,21 +27,31 @@
   background: transparent;
   border: none;
   color: yellow;
+  cursor: pointer;
 
   &:focus {
     outline: none;
   }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
 }
 
 .item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border: 1px solid yellow;
-  width: 100px;
-  height: 100px;
-  margin-left: 16px;
+  width: 120px;
+  height: 120px;
+  padding: 8px;
+  margin-right: 16px;
   margin-bottom: 16px;
-  text-align: center;
 
-  p {
-    margin-bottom: 0;
+  a {
+    text-decoration: none;
+    text-align: center;
   }
 }

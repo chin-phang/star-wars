@@ -1,30 +1,54 @@
 import * as ActionTypes from './constants';
 import * as Request from '../utils/request';
 
-const fetchRequest = () => ({
-  type: ActionTypes.FETCH_REQUEST
+const listRequest = () => ({
+  type: ActionTypes.LIST_REQUEST
 });
 
-const fetchSuccess = response => ({
-  type: ActionTypes.FETCH_SUCCESS,
+const listSuccess = response => ({
+  type: ActionTypes.LIST_SUCCESS,
   payload: response
 });
 
-const fetchError = error => ({
-  type: ActionTypes.FETCH_ERROR,
+const listError = error => ({
+  type: ActionTypes.LIST_ERROR,
   payload: error
 });
 
-export const fetchPeople = url => async dispatch => {
-  const url = url || '/people';
-
-  dispatch(fetchRequest());
+export const fetchAllPeople = url => async dispatch => {
+  dispatch(listRequest());
 
   try {
     const response = await Request.get(url);
 
-    dispatch(fetchSuccess(response.data));
+    dispatch(listSuccess(response.data));
   } catch (error) {
-    dispatch(fetchError(error));
+    dispatch(listError(error));
+  }
+};
+
+const detailRequest = () => ({
+  type: ActionTypes.DETAIL_REQUEST
+});
+
+const detailSuccess = response => ({
+  type: ActionTypes.DETAIL_SUCCESS,
+  payload: response
+});
+
+const detailError = error => ({
+  type: ActionTypes.DETAIL_ERROR,
+  payload: error
+});
+
+export const fetchDetail = url => async dispatch => {
+  dispatch(detailRequest());
+
+  try {
+    const response = await Request.get(url);
+
+    dispatch(detailSuccess(response.data));
+  } catch (error) {
+    dispatch(detailError(error));
   }
 };

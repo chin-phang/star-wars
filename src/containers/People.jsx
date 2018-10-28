@@ -10,14 +10,16 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 import * as style from './people.scss';
-import { fetchPeople } from '../reducers/actions';
+import { fetchAllPeople } from '../reducers/actions';
+import { Loading } from '../components/Loading';
 
 const mapStateToProps = state => ({
-  data: state.peopleReducer.data
+  data: state.peopleReducer.data,
+  loading: state.peopleReducer.loading
 });
 
 const mapDispatchToProps = {
-  fetchPeople
+  fetchAllPeople
 };
 
 export class PeopleContainer extends React.Component {
@@ -26,48 +28,69 @@ export class PeopleContainer extends React.Component {
 
     this.handlePrevious = this.handlePrevious.bind(this);
     this.handleNext = this.handleNext.bind(this);
+    this.renderDetail = this.renderDetail.bind(this);
   }
 
   componentDidMount() {
-    this.props.fetchPeople();
+    this.props.fetchAllPeople('/people');
   }
 
   handlePrevious() {
-    this.props.fetchPeople(this.props.data.previous);
+    const { previous } = this.props.data;
+    const url = previous.substr(previous.indexOf('/people'));
+    this.props.fetchAllPeople(url);
   }
 
   handleNext() {
-    this.props.fetchPeople(this.props.data.next);
+    const { next } = this.props.data;
+    const url = next.substr(next.indexOf('/people'));
+
+    this.props.fetchAllPeople(url);
+  }
+
+  renderDetail(obj) {
+    const url = obj.url.substr(obj.url.indexOf('people/'));
+    const id = url.split('/')[1];
+
+    return (
+      <div className={style.item} key={id}>
+        <Link to={`/people/${id}`}>{obj.name}</Link>
+      </div>
+    );
   }
 
   render() {
     const results = this.props.data ? this.props.data.results : [];
     return (
-      <div className={style.people}>
-        <div className={style.previous}>
-          <button
-            className={style.pageBtn}
-            onClick={this.handlePrevious}
-            disabled={this.props.data.previous == null}
-          >
-            <FontAwesomeIcon icon={faChevronLeft} size="5x" />
-          </button>
-        </div>
-        <div className={style.itemContainer}>
-          {map(results, (item, key) => (
-            <div className={style.item} key={key + 1}>
-              <Link to="/people/1">{item.name}</Link>
-            </div>
-          ))}
-        </div>
-        <div className={style.next}>
-          <button
-            className={style.pageBtn}
-            onClick={this.handleNext}
-            disabled={this.props.data.next == null}
-          >
-            <FontAwesomeIcon icon={faChevronRight} size="5x" />
-          </button>
+      <div>
+        <h1 className={style.heading}>All the People in the Universe</h1>
+        <div className={style.people}>
+          {this.props.loading && <Loading />}
+          {!this.props.loading && (
+            <React.Fragment>
+              <div className={style.previous}>
+                <button
+                  className={style.pageBtn}
+                  onClick={this.handlePrevious}
+                  disabled={this.props.data.previous == null}
+                >
+                  <FontAwesomeIcon icon={faChevronLeft} size="5x" />
+                </button>
+              </div>
+              <div className={style.itemContainer}>
+                {map(results, item => this.renderDetail(item))}
+              </div>
+              <div className={style.next}>
+                <button
+                  className={style.pageBtn}
+                  onClick={this.handleNext}
+                  disabled={this.props.data.next == null}
+                >
+                  <FontAwesomeIcon icon={faChevronRight} size="5x" />
+                </button>
+              </div>
+            </React.Fragment>
+          )}
         </div>
       </div>
     );
@@ -83,5 +106,6 @@ export const People = withRouter(
 
 PeopleContainer.propTypes = {
   data: PropTypes.object,
-  fetchPeople: PropTypes.func
+  loading: PropTypes.bool,
+  fetchAllPeople: PropTypes.func
 };

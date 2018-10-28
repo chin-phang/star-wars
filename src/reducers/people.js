@@ -9,13 +9,13 @@ const initialState = {
 
 export const peopleReducer = (state = initialState, action) => {
   switch (action.type) {
-    case ActionTypes.FETCH_REQUEST:
+    case ActionTypes.LIST_REQUEST:
       return update(state, {
         loading: {
           $set: true
         }
       });
-    case ActionTypes.FETCH_SUCCESS:
+    case ActionTypes.LIST_SUCCESS:
       return update(state, {
         loading: {
           $set: false
@@ -24,7 +24,38 @@ export const peopleReducer = (state = initialState, action) => {
           $set: action.payload
         }
       });
-    case ActionTypes.FETCH_ERROR:
+    case ActionTypes.LIST_ERROR:
+      return update(state, {
+        loading: {
+          $set: false
+        },
+        error: {
+          $set: action.payload
+        }
+      });
+    default:
+      return state;
+  }
+};
+
+export const detailReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case ActionTypes.DETAIL_REQUEST:
+      return update(state, {
+        loading: {
+          $set: true
+        }
+      });
+    case ActionTypes.DETAIL_SUCCESS:
+      return update(state, {
+        loading: {
+          $set: false
+        },
+        data: {
+          $set: action.payload
+        }
+      });
+    case ActionTypes.DETAIL_ERROR:
       return update(state, {
         loading: {
           $set: false

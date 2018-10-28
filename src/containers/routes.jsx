@@ -3,10 +3,10 @@ import { Route, Switch } from 'react-router-dom';
 
 import { Home } from './Home';
 import { People } from './People';
-import { Detail } from '../components/Detail';
+import { PopUp } from '../components/PopUp';
 
 export const peopleRoutes = {
-  PEOPLE: '/people',
+  LIST: '/people',
   DETAIL: '/people/:id'
 };
 
@@ -17,7 +17,7 @@ export class Routes extends React.Component {
         <Switch>
           <Route path={'/'} exact={true} component={Home} />
           <Route path={'/people'} exact={true} component={People} />
-          <Route path={'/people/:id'} exact={true} component={Detail} />
+          <Route path={'/people/:id'} exact={true} component={PopUp} />
         </Switch>
       </React.Fragment>
     );
