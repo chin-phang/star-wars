@@ -6,7 +6,7 @@ import { People } from './People';
 import { PopUp } from '../components/PopUp';
 
 export const peopleRoutes = {
-  LIST: '/people',
+  LIST: '/people/?page=1',
   DETAIL: '/people/:id'
 };
 

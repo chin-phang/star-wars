@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom';
+import queryString from 'query-string';
 import map from 'lodash/map';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -12,6 +13,7 @@ import {
 import * as style from './people.scss';
 import { fetchAllPeople } from '../reducers/actions';
 import { Loading } from '../components/Loading';
+import { peopleRoutes } from './routes';
 
 const mapStateToProps = state => ({
   data: state.peopleReducer.data,
@@ -26,26 +28,32 @@ export class PeopleContainer extends React.Component {
   constructor(props) {
     super(props);
 
-    this.handlePrevious = this.handlePrevious.bind(this);
-    this.handleNext = this.handleNext.bind(this);
+    this.linkTo = this.linkTo.bind(this);
     this.renderDetail = this.renderDetail.bind(this);
   }
 
   componentDidMount() {
-    this.props.fetchAllPeople('/people');
-  }
-
-  handlePrevious() {
-    const { previous } = this.props.data;
-    const url = previous.substr(previous.indexOf('/people'));
-    this.props.fetchAllPeople(url);
-  }
-
-  handleNext() {
-    const { next } = this.props.data;
-    const url = next.substr(next.indexOf('/people'));
+    const url = window.location.href.substr(
+      window.location.href.indexOf('/people')
+    );
 
     this.props.fetchAllPeople(url);
+  }
+
+  componentWillUpdate(nextProps) {
+    if (nextProps.location.search !== this.props.location.search) {
+      const url = window.location.href.substr(
+        window.location.href.indexOf('/people')
+      );
+
+      this.props.fetchAllPeople(url);
+    }
+  }
+
+  linkTo(url) {
+    if (url == null) return peopleRoutes.LIST;
+
+    return url.substr(url.indexOf('/people'));
   }
 
   renderDetail(obj) {
@@ -63,34 +71,35 @@ export class PeopleContainer extends React.Component {
     const results = this.props.data ? this.props.data.results : [];
     return (
       <div>
-        <h1 className={style.heading}>All the People in the Universe</h1>
+        <div className={style.head}>
+          <h1>All People in the Universe</h1>
+        </div>
         <div className={style.people}>
+          <div className={style.pageBtn}>
+            <Link
+              className={style.arrow}
+              to={this.linkTo(this.props.data.previous)}
+            >
+              <FontAwesomeIcon icon={faChevronLeft} size="5x" />
+            </Link>
+          </div>
+
           {this.props.loading && <Loading />}
+
           {!this.props.loading && (
-            <React.Fragment>
-              <div className={style.previous}>
-                <button
-                  className={style.pageBtn}
-                  onClick={this.handlePrevious}
-                  disabled={this.props.data.previous == null}
-                >
-                  <FontAwesomeIcon icon={faChevronLeft} size="5x" />
-                </button>
-              </div>
-              <div className={style.itemContainer}>
-                {map(results, item => this.renderDetail(item))}
-              </div>
-              <div className={style.next}>
-                <button
-                  className={style.pageBtn}
-                  onClick={this.handleNext}
-                  disabled={this.props.data.next == null}
-                >
-                  <FontAwesomeIcon icon={faChevronRight} size="5x" />
-                </button>
-              </div>
-            </React.Fragment>
+            <div className={style.itemContainer}>
+              {map(results, item => this.renderDetail(item))}
+            </div>
           )}
+
+          <div className={style.pageBtn}>
+            <Link
+              className={style.arrow}
+              to={this.linkTo(this.props.data.next)}
+            >
+              <FontAwesomeIcon icon={faChevronRight} size="5x" />
+            </Link>
+          </div>
         </div>
       </div>
     );
@@ -107,5 +116,8 @@ export const People = withRouter(
 PeopleContainer.propTypes = {
   data: PropTypes.object,
   loading: PropTypes.bool,
-  fetchAllPeople: PropTypes.func
+  fetchAllPeople: PropTypes.func,
+  match: PropTypes.object,
+  location: PropTypes.object,
+  history: PropTypes.object
 };

@@ -1,4 +1,4 @@
-import * as ActionTypes from './constants';
+import * as Types from './constants';
 import update from 'immutability-helper';
 
 const initialState = {
@@ -9,13 +9,13 @@ const initialState = {
 
 export const peopleReducer = (state = initialState, action) => {
   switch (action.type) {
-    case ActionTypes.LIST_REQUEST:
+    case Types.LIST_REQUEST:
       return update(state, {
         loading: {
           $set: true
         }
       });
-    case ActionTypes.LIST_SUCCESS:
+    case Types.LIST_SUCCESS:
       return update(state, {
         loading: {
           $set: false
@@ -24,7 +24,7 @@ export const peopleReducer = (state = initialState, action) => {
           $set: action.payload
         }
       });
-    case ActionTypes.LIST_ERROR:
+    case Types.LIST_ERROR:
       return update(state, {
         loading: {
           $set: false
@@ -40,13 +40,13 @@ export const peopleReducer = (state = initialState, action) => {
 
 export const detailReducer = (state = initialState, action) => {
   switch (action.type) {
-    case ActionTypes.DETAIL_REQUEST:
+    case Types.DETAIL_REQUEST:
       return update(state, {
         loading: {
           $set: true
         }
       });
-    case ActionTypes.DETAIL_SUCCESS:
+    case Types.DETAIL_SUCCESS:
       return update(state, {
         loading: {
           $set: false
@@ -55,7 +55,7 @@ export const detailReducer = (state = initialState, action) => {
           $set: action.payload
         }
       });
-    case ActionTypes.DETAIL_ERROR:
+    case Types.DETAIL_ERROR:
       return update(state, {
         loading: {
           $set: false
