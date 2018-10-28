@@ -63,7 +63,14 @@ export class PeopleContainer extends React.Component {
     const id = url.split('/')[1];
 
     return (
-      <Link className={style.item} key={id} to={`/people/${id}`}>
+      <Link
+        className={style.item}
+        key={id}
+        to={{
+          pathname: `/people/${id}`,
+          state: { popup: true }
+        }}
+      >
         {obj.name}
       </Link>
     );

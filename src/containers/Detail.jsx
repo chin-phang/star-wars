@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
+import * as style from './detail.scss';
 import { fetchDetail } from '../reducers/actions';
-import { Popup } from '../components/Popup';
 
 const mapStateToProps = state => ({
   data: state.detailReducer.data
@@ -15,33 +15,21 @@ const mapDispatchToProps = {
 };
 
 export class DetailContainer extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      popupOpen: true
-    };
-
-    this.toggle = this.toggle.bind(this);
-  }
-
   componentDidMount() {
-    this.props.fetchDetail('/people/1');
-  }
+    const url = window.location.href.substr(
+      window.location.href.indexOf('/people')
+    );
 
-  toggle() {
-    this.setState({
-      popupOpen: !this.state.popupOpen
-    });
+    this.props.fetchDetail(url);
   }
 
   render() {
     return (
-      <Popup isOpen={this.state.popupOpen} togglePopup={this.toggle}>
-        <div>
+      <div className={style.detail}>
+        <div className={style.popup}>
           <p>{this.props.data.name}</p>
         </div>
-      </Popup>
+      </div>
     );
   }
 }
