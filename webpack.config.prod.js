@@ -17,6 +17,7 @@ const prodWebpackConfig = merge(baseWebpackConfig, {
       {
         test: /\.(scss|css)$/,
         include: [path.resolve(__dirname, 'src')],
+        exclude: [path.resolve(__dirname, 'src/main.scss')],
         use: [
           {
             loader: MiniCssExtractPlugin.loader
@@ -31,6 +32,16 @@ const prodWebpackConfig = merge(baseWebpackConfig, {
           'resolve-url-loader',
           'sass-loader',
           'postcss-loader'
+        ]
+      },
+      {
+        test: /\.(scss|css)$/,
+        include: [path.resolve(__dirname, 'src/main.scss')],
+        use: [
+          { loader: MiniCssExtractPlugin.loader },
+          'css-loader',
+          'resolve-url-loader',
+          'sass-loader'
         ]
       }
     ]

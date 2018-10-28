@@ -9,6 +9,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
       {
         test: /\.(scss|css)$/,
         include: [path.resolve(__dirname, 'src')],
+        exclude: [path.resolve(__dirname, 'src/main.scss')],
         use: [
           'style-loader',
           {
@@ -21,6 +22,11 @@ const devWebpackConfig = merge(baseWebpackConfig, {
           'resolve-url-loader',
           'sass-loader'
         ]
+      },
+      {
+        test: /\.(scss|css)$/,
+        include: [path.resolve(__dirname, 'src/main.scss')],
+        use: ['style-loader', 'css-loader', 'resolve-url-loader', 'sass-loader']
       }
     ]
   },
