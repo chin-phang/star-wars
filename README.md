@@ -3,7 +3,7 @@ Single page application where users can view all people in the Star Wars univers
 
 # Development
 ```
-nmp run dev
+npm run dev
 ```
 
 # Production
