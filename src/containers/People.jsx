@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom';
 import queryString from 'query-string';
 import map from 'lodash/map';
-import cs from 'classnames';
+import cx from 'classnames';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faChevronLeft,
@@ -16,7 +16,6 @@ import { fetchAllPeople } from '../reducers/actions';
 import { Loading } from '../components/Loading';
 import { peopleRoutes } from './routes';
 import { NotFound } from './NotFound';
-import { cx } from 'emotion';
 
 const mapStateToProps = state => ({
   data: state.peopleReducer.data || {},
