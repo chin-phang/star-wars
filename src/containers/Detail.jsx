@@ -2,21 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { Button } from 'reactstrap';
 import map from 'lodash/map';
 import {
   Carousel,
   CarouselItem,
   CarouselControl,
-  CarouselIndicators,
-  CarouselCaption
+  CarouselIndicators
 } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 import * as style from './detail.scss';
-import { fetchDetail } from '../reducers/actions';
-import { Loading } from '../components/Loading';
 import { Item } from '../components/Item';
 
 const mapStateToProps = state => ({

@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { throwError } from 'rxjs';
 
 const instance = axios.create({
   baseURL: 'https://swapi.co/api',

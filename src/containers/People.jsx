@@ -15,7 +15,6 @@ import * as style from './people.scss';
 import { fetchAllPeople } from '../reducers/actions';
 import { Loading } from '../components/Loading';
 import { peopleRoutes } from './routes';
-import { NotFound } from './NotFound';
 
 const mapStateToProps = state => ({
   data: state.peopleReducer.data || {},
