@@ -3,18 +3,18 @@ import PropTypes from 'prop-types';
 import { Modal, ModalHeader, ModalBody } from 'reactstrap';
 import cx from 'classnames';
 
-import * as style from './popUp.scss';
+import * as style from './popup.scss';
 import { isPseudoElement } from 'postcss-selector-parser';
 
-export class PopUp extends React.Component {
+export class Popup extends React.Component {
   handleToggle() {
-    this.props.togglePopUp();
+    this.props.togglePopup();
   }
 
   render() {
     return (
       <Modal
-        className={cx(`${style.popUp}`, this.props.className)}
+        className={cx(`${style.popup}`, this.props.className)}
         isOpen={this.props.isOpen}
         toggle={this.handleToggle}
       >
@@ -25,9 +25,9 @@ export class PopUp extends React.Component {
   }
 }
 
-PopUp.propTypes = {
+Popup.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   isOpen: PropTypes.bool,
-  togglePopUp: PropTypes.func
+  togglePopup: PropTypes.func
 };

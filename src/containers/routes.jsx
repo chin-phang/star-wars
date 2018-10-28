@@ -1,9 +1,10 @@
 import * as React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 
 import { Home } from './Home';
 import { People } from './People';
-import { PopUp } from '../components/PopUp';
+import { Detail } from './Detail';
+import { NotFound } from './NotFound';
 
 export const peopleRoutes = {
   LIST: '/people/?page=1',
@@ -13,13 +14,13 @@ export const peopleRoutes = {
 export class Routes extends React.Component {
   render() {
     return (
-      <React.Fragment>
-        <Switch>
-          <Route path={'/'} exact={true} component={Home} />
-          <Route path={'/people'} exact={true} component={People} />
-          <Route path={'/people/:id'} exact={true} component={PopUp} />
-        </Switch>
-      </React.Fragment>
+      <Switch>
+        <Route path={'/'} exact component={Home} />
+        <Route path={'/people'} exact component={People} />
+        <Route path={'/people/:id'} exact component={Detail} />
+        <Route path="/404" exact component={NotFound} />
+        <Redirect from="*" to="/404" />
+      </Switch>
     );
   }
 }

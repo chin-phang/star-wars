@@ -1,0 +1,23 @@
+@import "../scss/utils";
+
+.notFound {
+  color: yellow;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 100px;
+}
+
+.robot {
+  width: 430px;
+  height: 430px;
+}
+
+.left,
+.right {
+  text-align: center;
+}
+
+.link {
+  text-decoration: none !important;
+}

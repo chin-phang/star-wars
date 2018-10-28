@@ -14,9 +14,10 @@ import * as style from './people.scss';
 import { fetchAllPeople } from '../reducers/actions';
 import { Loading } from '../components/Loading';
 import { peopleRoutes } from './routes';
+import { NotFound } from './NotFound';
 
 const mapStateToProps = state => ({
-  data: state.peopleReducer.data,
+  data: state.peopleReducer.data || {},
   loading: state.peopleReducer.loading
 });
 
@@ -61,19 +62,27 @@ export class PeopleContainer extends React.Component {
     const id = url.split('/')[1];
 
     return (
-      <div className={style.item} key={id}>
-        <Link to={`/people/${id}`}>{obj.name}</Link>
-      </div>
+      <Link className={style.item} key={id} to={`/people/${id}`}>
+        {obj.name}
+      </Link>
     );
   }
 
   render() {
-    const results = this.props.data ? this.props.data.results : [];
+    const qs = queryString.parse(this.props.location.search);
+
     return (
-      <div>
+      <div className={style.peopleContainer}>
         <div className={style.head}>
           <h1>All People in the Universe</h1>
+          {!this.props.loading &&
+            this.props.data.count && (
+              <h4 className={style.page}>
+                Page {qs.page} of {Math.ceil(this.props.data.count / 10)}
+              </h4>
+            )}
         </div>
+
         <div className={style.people}>
           <div className={style.pageBtn}>
             <Link
@@ -88,7 +97,7 @@ export class PeopleContainer extends React.Component {
 
           {!this.props.loading && (
             <div className={style.itemContainer}>
-              {map(results, item => this.renderDetail(item))}
+              {map(this.props.data.results, item => this.renderDetail(item))}
             </div>
           )}
 
