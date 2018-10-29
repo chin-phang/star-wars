@@ -124,6 +124,7 @@ export class DetailContainer extends React.Component {
         <div className={style.popup}>
           <h3 className={style.heading}>Detail</h3>
           <Carousel
+            interval={false}
             activeIndex={activeIndex}
             next={this.next}
             previous={this.previous}

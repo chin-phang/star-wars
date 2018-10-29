@@ -55,22 +55,26 @@ export class Item extends React.Component {
           <div className="col-md-6 text-center">
             <div>
               <p className={style.label}>Starships: </p>
-              {!isEmpty(people.starships)
-                ? map(people.starships, (starship, index) => (
-                    <p key={index}>{starship.name}</p>
-                  ))
-                : 'n/a'}
+              {!isEmpty(people.starships) ? (
+                map(people.starships, (starship, index) => (
+                  <p key={index}>{starship.name}</p>
+                ))
+              ) : (
+                <p>n/a</p>
+              )}
             </div>
           </div>
 
           <div className="col-md-6 text-center">
             <div>
               <p className={style.label}>Vehicles: </p>
-              {!isEmpty(people.vehicles)
-                ? map(people.vehicles, (vehicle, index) => (
-                    <p key={index}>{vehicle.name}</p>
-                  ))
-                : 'n/a'}
+              {!isEmpty(people.vehicles) ? (
+                map(people.vehicles, (vehicle, index) => (
+                  <p key={index}>{vehicle.name}</p>
+                ))
+              ) : (
+                <p>n/a</p>
+              )}
             </div>
           </div>
         </div>

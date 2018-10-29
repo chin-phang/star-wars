@@ -47,31 +47,41 @@
   padding: 20px 40px;
   width: 60%;
   height: 600px;
-  overflow-y: scroll;
+  overflow: hidden;
   margin: 0 auto;
 
   :global(.carousel-inner) {
-    height: 500px;
+    height: 450px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+
+    :global(.carousel-item) {
+      backface-visibility: visible;
+    }
+
+    &::-webkit-scrollbar {
+      width: 10px;
+      height: 10px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background-color: black;
+      border-radius: 10px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: yellow;
+      border-radius: 10px;
+    }
+  }
+
+  :global(.carousel-indicators) {
+    bottom: -10%;
   }
 
   :global(.carousel-control-prev),
   :global(.carousel-control-next) {
     cursor: pointer;
     width: max-content;
-  }
-
-  &::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
-  }
-
-  &::-webkit-scrollbar-track {
-    background-color: black;
-    border-radius: 10px;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background-color: yellow;
-    border-radius: 10px;
   }
 }
