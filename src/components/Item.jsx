@@ -8,7 +8,7 @@ import * as style from './item.scss';
 export class Item extends React.Component {
   render() {
     let { people } = this.props;
-    console.log(people);
+
     return (
       <div className={style.detailContent}>
         <div className="row">

@@ -14,6 +14,7 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 import * as style from './detail.scss';
 import { Item } from '../components/Item';
+import { constructId } from '../utils/helpers';
 
 const mapStateToProps = state => ({
   results: state.peopleReducer.data.results || {}
@@ -94,15 +95,13 @@ export class DetailContainer extends React.Component {
     let { results } = this.props;
     const { activeIndex } = this.state;
     const indicators = map(results, item => {
-      let url = item.url.substr(item.url.indexOf('people/'));
-      let id = url.split('/')[1];
+      let id = constructId(item.url, 'people/');
 
       return Object.assign(item, { key: id });
     });
 
     const slides = map(results, item => {
-      let url = item.url.substr(item.url.indexOf('people/'));
-      let id = url.split('/')[1];
+      let id = constructId(item.url, 'people/');
 
       return (
         <CarouselItem

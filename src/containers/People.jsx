@@ -15,6 +15,7 @@ import * as style from './people.scss';
 import { fetchAllPeople } from '../reducers/actions';
 import { Loading } from '../components/Loading';
 import { peopleRoutes } from './routes';
+import { constructId } from '../utils/helpers';
 
 const mapStateToProps = state => ({
   data: state.peopleReducer.data || {},
@@ -58,8 +59,7 @@ export class PeopleContainer extends React.Component {
   }
 
   renderDetail(obj) {
-    let url = obj.url.substr(obj.url.indexOf('people/'));
-    let id = url.split('/')[1];
+    let id = constructId(obj.url, 'people/');
 
     return (
       <Link
