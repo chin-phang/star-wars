@@ -155,7 +155,6 @@ export const Detail = withRouter(connect(mapStateToProps)(DetailContainer));
 
 DetailContainer.propTypes = {
   results: PropTypes.arrayOf(PropTypes.object),
-  fetchDetail: PropTypes.func,
   match: PropTypes.object,
   location: PropTypes.object,
   history: PropTypes.object
