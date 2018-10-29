@@ -8,89 +8,94 @@ import * as style from './item.scss';
 export class Item extends React.Component {
   render() {
     let { people } = this.props;
-
+    console.log(people);
     return (
       <div className={style.detailContent}>
         <div className="row">
           <div className="col-md-6 text-center">
-            <p>
-              <span className={style.label}>Name: </span>
-              {people.name}
-            </p>
-            <p>
-              <span className={style.label}>Gender: </span>
-              {people.gender}
-            </p>
-            <p>
-              <span className={style.label}>Birth Year: </span>
-              {people.birth_year}
-            </p>
-            <p>
-              <span className={style.label}>Height: </span>
-              {people.height}
-            </p>
+            <div>
+              <p className={style.label}>Name: </p>
+              <p>{people.name}</p>
+            </div>
+            <div>
+              <p className={style.label}>Gender: </p>
+              <p>{people.gender}</p>
+            </div>
+            <div>
+              <p className={style.label}>Birth Year: </p>
+              <p>{people.birth_year}</p>
+            </div>
+            <div>
+              <p className={style.label}>Height: </p>
+              <p>{people.height}</p>
+            </div>
           </div>
+
           <div className="col-md-6 text-center">
-            <p>
-              <span className={style.label}>Mass: </span>
-              {people.mass}
-            </p>
-            <p>
-              <span className={style.label}>Eye Color: </span>
-              {people.eye_color}
-            </p>
-            <p>
-              <span className={style.label}>Hair Color: </span>
-              {people.hair_color}
-            </p>
-            <p>
-              <span className={style.label}>Skin Color: </span>
-              {people.skin_color}
-            </p>
+            <div>
+              <p className={style.label}>Mass: </p>
+              <p>{people.mass}</p>
+            </div>
+            <div>
+              <p className={style.label}>Eye Color: </p>
+              <p>{people.eye_color}</p>
+            </div>
+            <div>
+              <p className={style.label}>Hair Color: </p>
+              <p>{people.hair_color}</p>
+            </div>
+            <div>
+              <p className={style.label}>Skin Color: </p>
+              <p>{people.skin_color}</p>
+            </div>
           </div>
         </div>
 
         <div className="row">
           <div className="col-md-6 text-center">
-            <p>
-              <span className={style.label}>Starships: </span>
+            <div>
+              <p className={style.label}>Starships: </p>
               {!isEmpty(people.starships)
-                ? map(people.starships, starship => <p>{starship.name}</p>)
+                ? map(people.starships, (starship, index) => (
+                    <p key={index}>{starship.name}</p>
+                  ))
                 : 'n/a'}
-            </p>
+            </div>
           </div>
 
           <div className="col-md-6 text-center">
-            <p>
-              <span className={style.label}>Vehicles: </span>
+            <div>
+              <p className={style.label}>Vehicles: </p>
               {!isEmpty(people.vehicles)
-                ? map(people.vehicles, vehicle => <p>{vehicle.name}</p>)
+                ? map(people.vehicles, (vehicle, index) => (
+                    <p key={index}>{vehicle.name}</p>
+                  ))
                 : 'n/a'}
-            </p>
+            </div>
           </div>
         </div>
 
         <div className="row">
           <div className="col-md-6 text-center">
-            <p>
-              <span className={style.label}>Species: </span>
-              {map(people.species, species => (
-                <p>{species.name}</p>
+            <div>
+              <p className={style.label}>Species: </p>
+              {map(people.species, (species, index) => (
+                <p key={index}>{species.name}</p>
               ))}
-            </p>
-            <p>
-              <span className={style.label}>Homeworld: </span>
-              {homeworld.name}
-            </p>
+            </div>
+            <div>
+              <p className={style.label}>Homeworld: </p>
+              <p>{people.homeworld ? people.homeworld.name : 'n/a'}</p>
+            </div>
           </div>
 
           <div className="col-md-6 text-center">
-            <p>
-              <span className={style.label}>Films: </span>
-              {map(people.films, film => (
-                <p>{film.name}</p>
+            <div>
+              <p className={style.label}>Films: </p>
+              {map(people.films, (film, index) => (
+                <p key={index}>{film.title}</p>
               ))}
-            </p>
+            </div>
           </div>
         </div>
       </div>

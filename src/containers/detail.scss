@@ -45,10 +45,14 @@
   border-radius: 5px;
   color: $dodger-blue;
   padding: 20px 40px;
-  width: 50%;
-  height: 500px;
+  width: 60%;
+  height: 600px;
   overflow-y: scroll;
   margin: 0 auto;
+
+  :global(.carousel-inner) {
+    height: 500px;
+  }
 
   :global(.carousel-control-prev),
   :global(.carousel-control-next) {
