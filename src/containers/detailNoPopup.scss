@@ -12,13 +12,17 @@
 
 .goHome {
   text-align: center;
-  margin-top: 40px;
+  margin: 40px 0;
+  position: absolute;
+  left: 50%;
+  bottom: -5%;
+  transform: translateX(-50%);
 }
 
 .link {
+  display: inline-block;
   border: 1px solid $darker-grey;
   border-radius: 4px;
-  cursor: pointer;
   color: $primary-cyan;
   text-decoration: none !important;
   padding: 8px 16px;

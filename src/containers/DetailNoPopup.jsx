@@ -2,6 +2,7 @@ import React from 'react';
 import { withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import debounceRender from 'react-debounce-render';
 
 import * as style from './detailNoPopup.scss';
 import { Item } from '../components/Item';
@@ -38,11 +39,16 @@ export class DetailNoPopupContainer extends React.Component {
   }
 }
 
+const debouncedDetailNoPopupContainer = debounceRender(
+  DetailNoPopupContainer,
+  3000
+);
+
 export const DetailNoPopup = withRouter(
   connect(
     mapStateToProps,
     mapDispatchToProps
-  )(DetailNoPopupContainer)
+  )(debouncedDetailNoPopupContainer)
 );
 
 DetailNoPopupContainer.propTypes = {
