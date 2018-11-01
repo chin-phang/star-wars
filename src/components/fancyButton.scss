@@ -1,0 +1,86 @@
+@import "../scss/utils";
+
+.fancyBtn {
+  border-color: transparent;
+  background: transparent;
+  .text {
+    transition: opacity, color 500ms ease;
+    color: $white;
+    font-size: 18px;
+    font-weight: 500;
+    font-family: $font-family-sans-serif;
+    padding-left: 10px;
+    padding-right: 10px;
+    top: 20px;
+    margin-top: 5px;
+    cursor: pointer;
+    opacity: 0.7;
+    &:hover {
+      color: $primary-cyan;
+    }
+  }
+
+  &:focus {
+    outline: 0;
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+
+    .text {
+      cursor: not-allowed;
+    }
+  }
+
+  &:not(:global(.disabled)) {
+    &:hover > :nth-child(1) {
+      animation-play-state: running;
+      animation-delay: 0.1s;
+    }
+    &:hover > :nth-child(2) {
+      animation-play-state: running;
+      animation-delay: 0.2s;
+    }
+    &:hover > :nth-child(3) {
+      animation-play-state: running;
+      animation-delay: 0.3s;
+    }
+    //this is the text element
+    &:hover > :nth-child(4) {
+      opacity: 1;
+    }
+    &:hover > :nth-child(5) {
+      animation-play-state: running;
+      animation-delay: 0.3s;
+    }
+    &:hover > :nth-child(6) {
+      animation-play-state: running;
+      animation-delay: 0.2s;
+    }
+
+    &:hover > :nth-child(7) {
+      animation-play-state: running;
+      animation-delay: 0.1s;
+    }
+  }
+
+  &:not(:hover) > *:not(:nth-child(4)) {
+    animation: none;
+    opacity: 0.2;
+  }
+}
+
+.arrow {
+  color: $white;
+  opacity: 0.2;
+  animation: loading 800ms linear infinite;
+  animation-play-state: paused;
+  transition: opacity ease;
+}
+
+@keyframes loading {
+  100% {
+    opacity: 1;
+  }
+}

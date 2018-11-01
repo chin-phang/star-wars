@@ -25,7 +25,7 @@ export class Loading extends React.Component {
           className={override}
           sizeUnit={'px'}
           size={60}
-          color={'yellow'}
+          color={'#00fff5'}
           loading={this.state.isLoading}
         />
       </div>

@@ -6,6 +6,7 @@ import { Home } from './Home';
 import { People } from './People';
 import { Detail } from './Detail';
 import { NotFound } from './NotFound';
+import { DetailNoPopup } from './DetailNoPopup';
 
 export const peopleRoutes = {
   LIST: '/people/?page=1',
@@ -44,6 +45,7 @@ export class RoutesContainer extends React.Component {
         <Switch location={isPopup ? this.previousLocation : location}>
           <Route path={'/'} exact component={Home} />
           <Route path={'/people'} exact component={People} />
+          <Route path={'/people/:id'} exact component={DetailNoPopup} />
           <Route path="/404" exact component={NotFound} />
           <Redirect from="*" to="/404" />
         </Switch>

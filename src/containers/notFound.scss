@@ -1,7 +1,7 @@
 @import "../scss/utils";
 
 .notFound {
-  color: yellow;
+  color: $eclipse;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -19,5 +19,10 @@
 }
 
 .link {
+  color: $primary-cyan;
   text-decoration: none !important;
+
+  &:hover {
+    color: $darker-cyan;
+  }
 }
