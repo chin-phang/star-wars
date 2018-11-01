@@ -24,11 +24,10 @@ export class DetailNoPopupContainer extends React.Component {
   }
 
   render() {
-    let { people } = this.props;
-
     return (
       <div className={style.detailNoPopup}>
-        <Item people={people} />
+        <h3 className={style.heading}>Detail</h3>
+        <Item people={this.props.people} />
         <div className={style.goHome}>
           <Link className={style.link} to="/">
             Home
