@@ -1,0 +1,23 @@
+@import "../scss/utils";
+
+.detailNoPopup {
+  color: $primary-cyan;
+}
+
+.goHome {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.link {
+  border: 1px solid $darker-grey;
+  border-radius: 4px;
+  cursor: pointer;
+  color: $primary-cyan;
+  text-decoration: none !important;
+  padding: 8px 16px;
+
+  &:hover {
+    color: $darker-cyan;
+  }
+}

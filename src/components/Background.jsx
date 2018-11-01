@@ -7,7 +7,7 @@ export class Background extends React.Component {
     return (
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 1568.318 1170.425"
+        viewBox="0 0 1200 1000"
         className={style.xBackground}
       >
         <defs>
@@ -312,11 +312,7 @@ export class Background extends React.Component {
             <feComposite in="SourceGraphic" />
           </filter>
         </defs>
-        <g
-          id="Group_3763"
-          data-name="Group 3763"
-          transform="translate(-176 42.425)"
-        >
+        <g id="Group_3763" data-name="Group 3763" transform="translate(-360 0)">
           <path
             id="Path_1516"
             data-name="Path 1516"

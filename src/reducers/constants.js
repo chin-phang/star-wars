@@ -1,3 +1,5 @@
-export const LIST_REQUEST = '@people/REQUEST';
-export const LIST_SUCCESS = '@people/SUCCESS';
-export const LIST_ERROR = '@people/ERROR';
+export const FETCH_REQUEST = '@people/FETCH_REQUEST';
+export const FETCH_ERROR = '@people/FETCH_ERROR';
+
+export const LIST_SUCCESS = '@people/LIST_SUCCESS';
+export const DETAIL_SUCCESS = '@people/DETAIL_SUCCESS';

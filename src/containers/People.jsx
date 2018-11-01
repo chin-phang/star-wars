@@ -16,9 +16,10 @@ import { fetchAllPeople } from '../reducers/actions';
 import { Loading } from '../components/Loading';
 import { peopleRoutes } from './routes';
 import { constructId } from '../utils/helpers';
+import { peopleSelector } from '../reducers/selectors';
 
 const mapStateToProps = state => ({
-  data: state.peopleReducer.data || {},
+  data: peopleSelector(state),
   loading: state.peopleReducer.loading
 });
 

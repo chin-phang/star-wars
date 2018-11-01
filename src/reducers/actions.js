@@ -5,8 +5,8 @@ import reduce from 'lodash/reduce';
 import * as Types from './constants';
 import * as Request from '../utils/request';
 
-const listRequest = () => ({
-  type: Types.LIST_REQUEST
+const fetchRequest = () => ({
+  type: Types.FETCH_REQUEST
 });
 
 const listSuccess = response => ({
@@ -14,8 +14,13 @@ const listSuccess = response => ({
   payload: response
 });
 
-const listError = error => ({
-  type: Types.LIST_ERROR,
+const detailSuccess = response => ({
+  type: Types.DETAIL_SUCCESS,
+  payload: response
+});
+
+const fetchError = error => ({
+  type: Types.FETCH_ERROR,
   payload: error
 });
 
@@ -65,8 +70,32 @@ const mapPeople = results => {
   });
 };
 
+const mapDetail = people => {
+  return reduce(
+    people,
+    (acc, value, key) => {
+      const arr = ['films', 'species', 'vehicles', 'starships'];
+
+      if (arr.includes(key) && !isEmpty(value)) {
+        fetchURLs(value).then(data => {
+          acc[key] = data;
+        });
+      } else if (key === 'homeworld') {
+        fetchURL(value).then(data => {
+          acc[key] = data;
+        });
+      } else {
+        acc[key] = value;
+      }
+
+      return acc;
+    },
+    {}
+  );
+};
+
 export const fetchAllPeople = url => async dispatch => {
-  dispatch(listRequest());
+  dispatch(fetchRequest());
 
   try {
     const response = await Request.get(url);
@@ -76,6 +105,19 @@ export const fetchAllPeople = url => async dispatch => {
       listSuccess(Object.assign(response.data, { results: mappedResults }))
     );
   } catch (error) {
-    dispatch(listError(error));
+    dispatch(fetchError(error));
+  }
+};
+
+export const fetchPeopleDetail = url => async dispatch => {
+  dispatch(fetchRequest());
+
+  try {
+    const response = await Request.get(url);
+    const mappedDetail = mapDetail(response.data);
+
+    dispatch(detailSuccess(mappedDetail));
+  } catch (error) {
+    dispatch(fetchError(error));
   }
 };

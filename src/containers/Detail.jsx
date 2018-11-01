@@ -15,9 +15,10 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import * as style from './detail.scss';
 import { Item } from '../components/Item';
 import { constructId } from '../utils/helpers';
+import { resultsSelector } from '../reducers/selectors';
 
 const mapStateToProps = state => ({
-  results: state.peopleReducer.data.results || {}
+  results: resultsSelector(state)
 });
 
 export class DetailContainer extends React.Component {
@@ -38,12 +39,10 @@ export class DetailContainer extends React.Component {
   }
 
   componentDidMount() {
-    const url = window.location.href.substr(
-      window.location.href.indexOf('people')
-    );
+    let { params } = this.props.match;
 
     map(this.props.results, (people, index) => {
-      if (people.url === `https://swapi.co/api/${url}/`) {
+      if (people.url === `https://swapi.co/api/people/${params.id}/`) {
         this.setState({
           activeIndex: index
         });

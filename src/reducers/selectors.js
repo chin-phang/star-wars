@@ -1,10 +1,10 @@
 import { createSelector } from 'reselect';
-import find from 'lodash/find';
 
-const resultsSelector = state => state.data.results;
+export const peopleSelector = state => state.peopleReducer.list || {};
 
-export const peopleSelector = createSelector(resultsSelector, results => {
-  let url = window.location.href.substr(window.location.href.indexOf('people'));
+export const detailSelector = state => state.peopleReducer.detail || {};
 
-  return find(results, { url: `https://swapi.co/api/${url}/` });
-});
+export const resultsSelector = createSelector(
+  peopleSelector,
+  people => people.results
+);
